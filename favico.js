@@ -490,7 +490,11 @@
 		link.setIcon = function(canvas) {
 			var url = canvas.toDataURL('image/png');
 			if (_opt.element) {
-				_opt.element.setAttribute('src', url);
+				if ( _opt.element.nodeName === 'IMG' ) {
+					_opt.element.setAttribute('src', url);
+				} else {
+					_opt.element.setAttribute('href', url);
+				}
 			} else if (_opt.elementId) {
 				//if is attached to element (image)
 				document.getElementById(_opt.elementId).setAttribute('src', url);
